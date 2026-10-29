@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "gr-nord",
+  "version": "0.1.0",
+  "repository": "https://github.com/bymaksimenko-stack/gruppa-rosta-personal-system",
+  "description": "Группа роста. НОРД: личный жизненный курс, годовая цель и продолжение работы из нового чата через личное хранилище сайта.",
+  "author": { "name": "Группа роста" },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "ГР - НОРД",
+        "shortDescription": "Личный курс и годовая цель",
+        "longDescription": "Группа роста. НОРД помогает сформулировать жизненный курс на 3–5 лет и реалистичную годовую цель. Читает и сохраняет согласованные итоги через отдельно подключенный личный плагин сайта. В новом чате восстанавливает сохраненный контекст. Для постоянной памяти требуется личный плагин данных Группы роста.",
+        "developerName": "Группа роста",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "defaultPrompt": "Запусти НОРДа и прочитай мою сохраненную память, прежде чем продолжать работу.",
+        "brandColor": "#0056FF"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "gruppa-rosta",
+  "interface": { "displayName": "Группа роста" },
+  "plugins": [{
+    "name": "gr-nord",
+    "source": { "source": "local", "path": "./plugins/gr-nord" },
+    "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+    "category": "Productivity"
+  }]
+}

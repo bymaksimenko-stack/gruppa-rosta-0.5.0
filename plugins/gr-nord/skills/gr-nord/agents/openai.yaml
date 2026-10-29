@@ -1,0 +1,5 @@
+interface:
+  display_name: "ГР - НОРД"
+  short_description: "Группа роста: личный курс и годовая цель"
+  brand_color: "#0056FF"
+  default_prompt: "Используй $gr-nord: прочитай мою сохраненную память и продолжи работу с текущего этапа."
