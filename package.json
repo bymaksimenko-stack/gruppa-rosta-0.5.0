@@ -15,7 +15,8 @@
     "check": "tsc --noEmit",
     "check:template": "node scripts/check-distribution.mjs",
     "package:nord": "python3 scripts/package-nord.py",
-    "package:project": "python3 scripts/package-project.py"
+    "package:project": "python3 scripts/package-project.py",
+    "generate:agents": "python3 scripts/generate-specialists.py"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

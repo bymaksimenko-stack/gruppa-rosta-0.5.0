@@ -1,0 +1,24 @@
+{
+  "bundle_version": "0.4.0",
+  "author_version": "0.4, на согласование",
+  "items": [
+    {
+      "specialist": "ГР - НОРД",
+      "source": "prompts/ГР - НОРД - Авторский промпт 0.4.md",
+      "sha256": "4f2828b5e61ee6cf2b5907f54d4060882a945359b5f4e3f223c168d8d39209bc",
+      "characters": 20863,
+      "lines": 581,
+      "adapter": "prompts/Подключение НОРДа к системе.md",
+      "output": "project/01 - ГР - НОРД - Курс и годовая цель.md"
+    },
+    {
+      "specialist": "ГР - РИТМ",
+      "source": "prompts/ГР - РИТМ - Авторский промпт 0.4.md",
+      "sha256": "9dad3c3bef70b8d813f2e188fe93a9c343c0aee0f8b032882067127333ea3065",
+      "characters": 25354,
+      "lines": 821,
+      "adapter": "prompts/Подключение РИТМа к системе.md",
+      "output": "project/02 - ГР - РИТМ - 12 недель и планы.md"
+    }
+  ]
+}
