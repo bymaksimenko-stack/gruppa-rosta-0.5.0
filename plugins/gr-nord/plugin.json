@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "gr-nord",
   "version": "0.1.0",
-  "repository": "https://github.com/bymaksimenko-stack/gruppa-rosta-personal-system",
+  "repository": "https://github.com/bymaksimenko-stack/gruppa-rosta-0.5.0",
   "description": "Группа роста. НОРД: личный жизненный курс, годовая цель и продолжение работы из нового чата через личное хранилище сайта.",
   "author": { "name": "Группа роста" },
   "extensions": {

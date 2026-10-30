@@ -14,7 +14,7 @@ for item, expected in generation["documents"]():
 names = ["01 - ГР - НОРД - Курс и годовая цель.md", "02 - ГР - РИТМ - 12 недель и планы.md", "Как начать.md"]
 sources = {name: (root / "project" / name).read_bytes() for name in names}
 tool_source = (root / "app/mcp/route.ts").read_text(encoding="utf-8")
-known_tools = set(re.findall(r'name: "(gruppa_rosta_v1_\w+)"', tool_source))
+known_tools = set(re.findall(r"""name:\s*[\"'](gruppa_rosta_v1_\w+)[\"']""", tool_source))
 for name, content in sources.items():
     text = content.decode("utf-8")
     mentioned = set(re.findall(r"gruppa_rosta_v1_\w+", text))
@@ -22,16 +22,16 @@ for name, content in sources.items():
     assert not re.search(r"appgprj_[a-z0-9]+|/Users/|ghp_[A-Za-z0-9]+", text), name
     if name[:2] in ("01", "02"):
         assert not re.search(r"\]\([^)]+\)", text), "Инструкция специалиста зависит от внешнего файла"
-        assert "Версия комплекта: 0.4.0" in text
+        assert "Версия комплекта: 0.5.0" in text
 guide = sources["Как начать.md"].decode("utf-8")
 for name in names[:2]:
     assert name in guide, "Порядок запуска ссылается на неверное имя файла"
 
-destination = root / "outputs" / "project-0.4.0"
+destination = root / "outputs" / "project-0.5.0"
 destination.mkdir(parents=True, exist_ok=True)
 for name in names:
     shutil.copyfile(root / "project" / name, destination / name)
-archive = root / "outputs" / "gruppa-rosta-project-0.4.0.zip"
+archive = root / "outputs" / "gruppa-rosta-project-0.5.0.zip"
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as package:
     for name, content in sources.items():
         info = zipfile.ZipInfo(name, date_time=(2026, 10, 30, 0, 0, 0))

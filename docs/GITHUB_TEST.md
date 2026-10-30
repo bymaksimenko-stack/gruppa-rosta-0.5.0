@@ -2,7 +2,7 @@
 
 Дата: 30 октября 2026.
 
-Источник: https://github.com/bymaksimenko-stack/gruppa-rosta-personal-system
+Источник: https://github.com/bymaksimenko-stack/gruppa-rosta-0.5.0
 
 ## Подтверждено
 

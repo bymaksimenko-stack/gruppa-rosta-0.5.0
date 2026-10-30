@@ -1,0 +1,10 @@
+{
+  "version": "0.5.0",
+  "author_prompt_version": "0.4",
+  "schema_version": 3,
+  "base_github_commit": "8ae9b9afd1629794e47042d2919767cda1dadb94",
+  "base_commit_note": "Это базовый опубликованный commit, не подтверждение публикации изменений 0.5.0.",
+  "participant_source": "gruppa-rosta-install-0.5.0.zip",
+  "git_visibility_policy": "public по последнему решению владельца; публикация 0.5.0 проверяется отдельно",
+  "repository": "https://github.com/bymaksimenko-stack/gruppa-rosta-0.5.0"
+}

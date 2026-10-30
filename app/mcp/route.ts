@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getChatGPTUser, type ChatGPTUser } from "@/app/chatgpt-auth";
-import { migrateGrowthState } from "@/lib/growth-state";
+import { migrateGrowthState, trackingSchema, pointSchema } from "@/lib/growth-state";
 import { getOrCreateState, mutateState, saveState } from "@/lib/state-store";
 
 export const dynamic = "force-dynamic";
@@ -14,6 +14,8 @@ type RpcRequest = {
 };
 
 const tools = [
+ { name:'gruppa_rosta_v1_save_dashboard_tracking',description:'Сохранить подтвержденные месячную цель, числовые счетчики целей и динамику. Сначала прочитай get_dashboard, передай весь tracking с согласованными правками. month={title,targetDate,progress}; numbers={annual,sprint,month}: null либо {current,target>0,unit}; metrics=[{id,title,unit,points:[{date:YYYY-MM-DD,value}]}]. Не выдумывай историю. Общий прогресс цели не выводится из числа задач или одного счетчика.',inputSchema:{type:'object',required:['tracking','expected_revision','confirm'],properties:{tracking:{type:'object'},expected_revision:{type:'integer',minimum:1},confirm:{type:'boolean',const:true}},additionalProperties:false}},
+ { name:'gruppa_rosta_v1_record_metric',description:'Добавить подтвержденный факт динамики. Одинаковая дата заменяет только факт этой даты. Разным единицам нужны отдельные id. Требуются согласие и актуальная revision. Не заполняй пропуски догадками.',inputSchema:{type:'object',required:['id','title','unit','date','value','expected_revision','confirm'],properties:{id:{type:'string'},title:{type:'string'},unit:{type:'string'},date:{type:'string'},value:{type:'number'},expected_revision:{type:'integer',minimum:1},confirm:{type:'boolean',const:true}},additionalProperties:false}},
   {
     name: "gruppa_rosta_v1_get_nord_context",
     description: "ГР - НОРД: в начале каждого нового чата прочитать курс, Паспорт роста, цель и сохраненную память продолжения. История задач и отчетов не загружается целиком.",
@@ -194,6 +196,18 @@ async function callTool(user: ChatGPTUser, name: string, rawArgs: unknown) {
   const args = (rawArgs && typeof rawArgs === "object" ? rawArgs : {}) as Record<string, unknown>;
 
   switch (name) {
+    case 'gruppa_rosta_v1_save_dashboard_tracking': {
+      const v=z.object({tracking:trackingSchema,expected_revision:z.number().int().min(1),confirm:z.literal(true)}).strict().parse(args);
+      const current=await getOrCreateState(user);
+      return saveState(user,{...current.state,tracking:v.tracking},'mcp:save_dashboard_tracking',v.expected_revision);
+    }
+    case 'gruppa_rosta_v1_record_metric': {
+      const v=z.object({id:z.string().min(1).max(128),title:z.string().min(1).max(120),unit:z.string().min(1).max(40),date:z.string(),value:z.number().finite(),expected_revision:z.number().int().min(1),confirm:z.literal(true)}).strict().parse(args);
+      const current=await getOrCreateState(user),tracking=structuredClone(current.state.tracking),point=pointSchema.parse({date:v.date,value:v.value}),metric=tracking.metrics.find(m=>m.id===v.id);
+      if(metric){if(metric.unit!==v.unit)throw new Error('Для новой единицы создайте другой показатель');metric.title=v.title;metric.points=[...metric.points.filter(p=>p.date!==v.date),point].sort((a,b)=>a.date.localeCompare(b.date));}
+      else tracking.metrics.push({id:v.id,title:v.title,unit:v.unit,points:[point]});
+      return saveState(user,{...current.state,tracking:trackingSchema.parse(tracking)},'mcp:record_metric',v.expected_revision);
+    }
     case "gruppa_rosta_v1_get_nord_context": {
       const { state, revision, updatedAt } = await getOrCreateState(user);
       return {

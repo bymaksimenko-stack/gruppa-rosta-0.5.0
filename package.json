@@ -1,6 +1,6 @@
 {
   "name": "gruppa-rosta-personal-system",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
@@ -16,7 +16,9 @@
     "check:template": "node scripts/check-distribution.mjs",
     "package:nord": "python3 scripts/package-nord.py",
     "package:project": "python3 scripts/package-project.py",
-    "generate:agents": "python3 scripts/generate-specialists.py"
+    "generate:agents": "python3 scripts/generate-specialists.py",
+    "package:install": "python3 scripts/package-install.py",
+    "package": "npm run package:project && npm run package:install"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
