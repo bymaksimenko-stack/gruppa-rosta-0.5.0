@@ -1,5 +1,5 @@
 {
-  "bundle_version": "0.5.0",
+  "bundle_version": "0.5.1",
   "author_version": "0.4, на согласование",
   "items": [
     {
@@ -19,6 +19,21 @@
       "lines": 821,
       "adapter": "prompts/Подключение РИТМа к системе.md",
       "output": "project/02 - ГР - РИТМ - 12 недель и планы.md"
+    },
+    {
+      "specialist": "ГР - ОПОРА",
+      "source": "prompts/ГР - ОПОРА - Авторский промпт 1.0.md",
+      "sha256": "72f5ee3d8ec28ba6f3c384a033e6bb0f9cb330b23a31b18a7666702b2dbb720a",
+      "characters": 5753,
+      "lines": 43,
+      "adapter": "prompts/Подключение ОПОРЫ к системе.md",
+      "output": "project/03 - ГР - ОПОРА - Коуч-сессии.md",
+      "author_version": "1.0"
     }
-  ]
+  ],
+  "author_versions": {
+    "ГР - НОРД": "0.4",
+    "ГР - РИТМ": "0.4",
+    "ГР - ОПОРА": "1.0"
+  }
 }

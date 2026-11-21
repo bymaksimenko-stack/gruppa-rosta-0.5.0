@@ -1,10 +1,16 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author_prompt_version": "0.4",
   "schema_version": 3,
-  "base_github_commit": "8ae9b9afd1629794e47042d2919767cda1dadb94",
-  "base_commit_note": "Это базовый опубликованный commit, не подтверждение публикации изменений 0.5.0.",
-  "participant_source": "gruppa-rosta-install-0.5.0.zip",
-  "git_visibility_policy": "public по последнему решению владельца; публикация 0.5.0 проверяется отдельно",
-  "repository": "https://github.com/bymaksimenko-stack/gruppa-rosta-0.5.0"
+  "base_github_commit": "c01f91314a5426454b1f2ead6cb501c9d8e55d53",
+  "base_commit_note": "Комплект 0.5.1 добавляет ОПОРУ к опубликованной 0.5.0; код Site и схема 3 не изменены. Точный commit текущего комплекта смотрите в GitHub.",
+  "participant_source": "gruppa-rosta-install-0.5.1.zip",
+  "git_visibility_policy": "public по решению владельца; личные Sites и данные не публикуются",
+  "repository": "https://github.com/bymaksimenko-stack/gruppa-rosta-0.5.0",
+  "app_version": "0.5.0",
+  "author_prompt_versions": {
+    "ГР - НОРД": "0.4",
+    "ГР - РИТМ": "0.4",
+    "ГР - ОПОРА": "1.0"
+  }
 }

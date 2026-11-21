@@ -3,7 +3,8 @@
 from pathlib import Path, PurePosixPath
 import subprocess, json, hashlib, zipfile
 root=Path(__file__).resolve().parent.parent
-version='0.5.0'
+version=json.loads((root/'prompts/manifest.json').read_text())['bundle_version']
+assert json.loads((root/'RELEASE.json').read_text())['version']==version
 paths=subprocess.check_output(['git','ls-files','-z','--cached','--others','--exclude-standard'],cwd=root).decode().split('\0')
 names=sorted(set(p for p in paths if p and (root/p).is_file()))
 blocked={'.git','node_modules','outputs','work','dist','.next','.vinext','.wrangler','.sites-runtime','.codex'}
